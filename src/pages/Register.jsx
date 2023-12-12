@@ -11,8 +11,10 @@ const Register = () => {
     name: ''
   });
 
+  let test = useRef('yannick');
   const onChange = (e) => {
     const { name, value } = e.target;
+    test = test.current = 'christian';
     setFormData({ ...formData, [name]: value });
   };
 
@@ -27,6 +29,8 @@ const Register = () => {
     if (!formData.username.trim()) {
       validationErrors.username = 'username is required';
     }
+
+    console.log(test.current);
 
     if (!formData.email.trim()) {
       validationErrors.email = 'email is required';
@@ -72,7 +76,7 @@ const Register = () => {
     //   'avatar': file.current.files[0]
     // };
 
-  }, []);
+  }, [formData, test]);
 
   return (
     <div className='formContainer'>
